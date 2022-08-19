@@ -1,0 +1,39 @@
+Folosirea sabloanelor:
+    1) Singletone - TableGenerator
+    2) Command - Alghorithm, GUI, TableGenerator
+    3) Iterator - ArrayMatrixIterator
+    4) Builder - ButterflyBuilder
+    5) Facade - GUI e prin definitie un facade: ascunde toata functionalitatea aplicatiei in spatele unei interfete grafice
+	Composite este un arbore de clase in care o clasa apeleaza alte 2 clase si tot asa.
+    6) Composite - Main ul este un composite ce imbina doua Clase foarte complexe
+                 Main -> TableGenerator -> TableGenerator -> MyButton ...
+                  											 -> Algorithm ...
+                  		 -> GUI   			-> MyPannel -> multiple clase
+    7) Mediator/Broker - MyPannel este componenta ce mediaza interactiunea dintre aplicatia propiu zisa ( Algorithm ) si interfata grafica ( GUI )
+
+Functionalitatea aplicatiei:
+    Clasa Main apeleaza TableGenerator pentru a creea intern tabela de fluturi randomm, apoi deschide interfata grafica.
+    In interfata grafica (GUI) se adauga elemntele:
+        (
+        buton de restart game -> apeleaza functia de restartGame -> apeleaza TableGenerator si redeschide un joc nou
+        label de info -> spune daca nu exista drum intre doi fluturi sau daca nu sunt la fel fluturii
+        mypanel -> gridul de fluturi efectiv -> vorbim despre ea curand
+        label ce afiseaza drumul in coordonate i si j -> ex: {7,1} -> {7,0} -> {6,1} -> END (zerourile inseamna ca iese pe langa)
+        )
+    MyPanel este clasa Mediator/Broker ce face legatura intre GUI si restul claselor
+        Aceasta are un GridLayout de 10/10 ce reprezinta un tabel de fluturi
+        am folosit de asemenea butterflyArrayMatrixIterator ce este un Iterator DP pentru a adauga la fiecare buton nou creat
+        fluturele din matricea cu ajutorul TableGenearator
+
+        Butonul respectiv este un MyButton ce are urmatoarul comportament:
+         detine un camp Butterfly ce reprezinta fluturele ce este (sau nu) pe butonul repsectiv
+         functia checkButton care verifica:
+
+         0) se face disable la buton pentru a-l mentine unclickable
+
+         1) daca un buton a mai fost apasat deja (selectedButton) verifica daca cel apasat acum are acelasi tip
+            de fluture - daca da cauta drum cu ajutorul Algorithmului - daca gaseste apeleaza freeButterfly pe cele 2 butoane
+                                                                           si face selectedButton NULL
+                        - daca nu, scrie in labelul de info  ("Not matching butterflies")
+
+         2) daca nu a mai fost apasat alt buton selectedButton  = acest buton apasat

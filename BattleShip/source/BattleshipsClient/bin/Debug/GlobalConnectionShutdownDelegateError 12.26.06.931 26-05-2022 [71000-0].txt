@@ -1,0 +1,34 @@
+Comment: Error while executing global connection shutdown delegates for [TCP-E-S] 10.13.11.30:7610 -> 10.13.11.30:20123 (MflNVqfZIEK4WYD_E2HBUA). Ensure any shutdown exceptions are caught in your own code.
+
+Base Exception Type: NetworkCommsDotNet.ConnectionSetupException: Error during TCP connection establish with destination ([TCP-E-S] 0.0.0.0:0 -> 10.13.11.30:20123). Destination may not be listening or connect timed out. System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 10.13.11.30:20123
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   at NetworkCommsDotNet.Connections.TCP.TCPConnection.ConnectSocket()
+   at NetworkCommsDotNet.Connections.TCP.TCPConnection.ConnectSocket()
+   at NetworkCommsDotNet.Connections.TCP.TCPConnection.EstablishConnectionSpecific()
+   at NetworkCommsDotNet.Connections.Connection.EstablishConnection()
+   at NetworkCommsDotNet.Connections.TCP.TCPConnection.GetConnection(ConnectionInfo connectionInfo, SendReceiveOptions defaultSendReceiveOptions, TcpClient tcpClient, Boolean establishIfRequired, SSLOptions sslOptions)
+   at NetworkCommsDotNet.NetworkComms.SendObject[sendObjectType](String packetTypeStr, String destinationIPAddress, Int32 destinationPort, sendObjectType sendObject)
+   at BattleshipsClient.LobbyForm.LobbyForm_FormClosed(Object sender, FormClosedEventArgs e) in H:\SPRC\Battleship ---\BattleShip\source\BattleshipsClient\LobbyForm.cs:line 190
+   at System.Windows.Forms.Form.OnFormClosed(FormClosedEventArgs e)
+   at System.Windows.Forms.Form.RaiseFormClosedOnAppExit()
+   at System.Windows.Forms.Application.ExitInternal()
+   at System.Windows.Forms.Application.Exit(CancelEventArgs e)
+   at System.Windows.Forms.Application.Exit()
+   at BattleshipsClient.LobbyForm.ConnectionShutdownDelegate(Connection connection) in H:\SPRC\Battleship ---\BattleShip\source\BattleshipsClient\LobbyForm.cs:line 56
+   at NetworkCommsDotNet.Connections.Connection.CloseConnection(Boolean closeDueToError, Int32 logLocation)
+
+Stack Trace:    at NetworkCommsDotNet.Connections.TCP.TCPConnection.ConnectSocket()
+   at NetworkCommsDotNet.Connections.TCP.TCPConnection.EstablishConnectionSpecific()
+   at NetworkCommsDotNet.Connections.Connection.EstablishConnection()
+   at NetworkCommsDotNet.Connections.TCP.TCPConnection.GetConnection(ConnectionInfo connectionInfo, SendReceiveOptions defaultSendReceiveOptions, TcpClient tcpClient, Boolean establishIfRequired, SSLOptions sslOptions)
+   at NetworkCommsDotNet.NetworkComms.SendObject[sendObjectType](String packetTypeStr, String destinationIPAddress, Int32 destinationPort, sendObjectType sendObject)
+   at BattleshipsClient.LobbyForm.LobbyForm_FormClosed(Object sender, FormClosedEventArgs e) in H:\SPRC\Battleship ---\BattleShip\source\BattleshipsClient\LobbyForm.cs:line 190
+   at System.Windows.Forms.Form.OnFormClosed(FormClosedEventArgs e)
+   at System.Windows.Forms.Form.RaiseFormClosedOnAppExit()
+   at System.Windows.Forms.Application.ExitInternal()
+   at System.Windows.Forms.Application.Exit(CancelEventArgs e)
+   at System.Windows.Forms.Application.Exit()
+   at BattleshipsClient.LobbyForm.ConnectionShutdownDelegate(Connection connection) in H:\SPRC\Battleship ---\BattleShip\source\BattleshipsClient\LobbyForm.cs:line 56
+   at NetworkCommsDotNet.Connections.Connection.CloseConnection(Boolean closeDueToError, Int32 logLocation)

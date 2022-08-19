@@ -1,0 +1,2624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+  <!-- insert your AIML categories here -->
+  
+  <category>
+	    <pattern>*</pattern>
+	    <template>
+        <image>https://media1.giphy.com/media/3diweulYyUpLq/giphy.gif</image>
+        Eu zic sa mai incerci,poate data viitoare te inteleg!
+	    </template>
+	</category>
+  
+  <category>
+      <pattern>SALUT ^</pattern>
+      <template><srai>BUNA ^</srai></template>
+  </category>
+  
+  <category>
+      <pattern>HEI ^</pattern>
+      <template><srai>BUNA ^</srai></template>
+  </category>
+  
+  <category>
+    <pattern>BUNA ^</pattern>    
+    <template>Buna, cum te numesti?
+        <think><set name="topic">intro</set></think>
+    </template>
+  </category>
+  
+  <category>
+      <pattern>VREAU *</pattern>
+      <template>Doriti <set name="produs"><star/></set>.</template>
+  </category>
+  
+  <category>
+      <pattern>Ce vreau</pattern>
+      <template>Mi ai spus ca doresti <get name="produs"/>.</template>
+  </category>
+  
+  
+  <topic name="intro">
+      <category>
+          <pattern>*</pattern>
+          <template>
+              <star/>, astazi iti voi recomanda un tip de antrenament pentru grupa musculara pe care o doresti.<br/>
+                Ce tip de antrenament vrei sa abordam astazi?
+                
+            <button>
+            <text>Incepatori</text>
+            <postback>Incepatori</postback>
+            </button>
+            <button>
+            <text>Avansati</text>
+            <postback>Avansati</postback>
+            </button>
+                <think><set name="topic">TipAntrenament</set></think>
+          </template>
+      </category>
+  </topic>
+  
+  
+  <category>
+        <pattern>Cine sunt </pattern>
+        <template>
+            <think><set var="identificanumeutilizator"><get name="numeutilizator" /></set></think> 
+            <condition var="identificanumeutilizator">
+                <li value="unknown">Imi pare rau,dar nu te-ai prezentat inca.</li>
+                <li>Te numesti: <get var="identificanumeutilizator" />.</li>
+           </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>Cum ma numesc </pattern>
+        <template>
+            <think><set var="identificanumeutilizator"><get name="numeutilizator" /></set></think> 
+            <condition var="identificanumeutilizator">
+                <li value="unknown">Imi pare rau,dar nu te-ai prezentat inca.</li>
+                <li>Te numesti: <get var="identificanumeutilizator" />.</li>
+           </condition>
+        </template>
+    </category>
+        <category>
+            <pattern>^ care este numele meu ^</pattern>
+            <template><srai>^ Cum ma cheama ^</srai></template>
+        </category>
+    
+        <category>
+        <pattern> ^Cum ma cheama^ </pattern>
+        <template>
+            <think><set var="identificanumeutilizator"><get name="numeutilizator" /></set></think> 
+            <condition var="identificanumeutilizator">
+                <li value="unknown">Imi pare rau,dar nu te-ai prezentat inca.</li>
+                <li>Te numesti: <get var="identificanumeutilizator" />.</li>
+           </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ cine esti ^</pattern>
+        <template>
+            <image>https://danvasilache.ro/website/uploads/2018/05/antrenor-fitness-galati-30.jpg</image>
+		Ma numesc  <bot name="name" /> ,iubesc sportul si sunt aici pentru a te ajuta sa-ti gasesti antrenamentul potrivit pentru un corp de invidiat.
+		</template>
+    </category>
+    
+    <category>
+        <pattern>^ numele ^</pattern>
+        <template><srai>^ nume ^</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ nume  ^</pattern>
+        <template>
+            <image>https://danvasilache.ro/website/uploads/2018/05/antrenor-fitness-galati-30.jpg</image>
+		Ma numesc  <bot name="name" /> si sunt prietenul tau care te va invata cateva antrenamente pentru masa musculara.
+		</template>
+    </category>
+    
+    <category>
+	    <pattern>Ce faci </pattern>
+	    <template>
+	        <image>https://danvasilache.ro/website/uploads/2018/05/antrenor-fitness-galati-30.jpg</image>
+	    Ma pregatesc sa te invat cateva antrenamente de baza, mulțumesc <get name="numeutilizator" /> pentru intrebare.
+	    </template>
+    </category>
+  
+  <topic name="TipAntrenament">
+      <category>
+          <pattern>^ Incepatori ^</pattern>
+          <template>
+              Ai ales antrenamentul pentru incepatori. Ce grupa musculara vrei sa antrenezi azi?
+              <ul>
+                  <li>Piept</li>
+                  <li>Spate</li>
+                  <li>Picioare</li>
+                  <li>Umeri</li>
+                  <li>Brate</li>
+                  <li>Trapez</li>
+              </ul>
+              <think><set name="topic">Incepatori</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Avansati ^</pattern>
+          <template>
+              Ai ales antrenamentul pentru avansati. Ce grupa musculara vrei sa antrenezi azi?
+              <ul>
+                  <li>Piept</li>
+                  <li>Spate</li>
+                  <li>Picioare</li>
+                  <li>Umeri</li>
+                  <li>Brate</li>
+                  <li>Trapez</li>
+              </ul>
+              <think><set name="topic">Avansati</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>*</pattern>
+          <template>Te rog sa raspunzi doar cu "incepatori" sau "avansati".</template>
+      </category>
+  </topic>
+  
+    <topic name="Incepatori">
+     
+      <category>
+          <pattern>^ Piept ^</pattern>
+          <template>
+              Cu ce vrei sa te antrenezi?
+              <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiincepatoripiept</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Spate ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiincepatorispate</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Picioare ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiincepatoripicioare</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Umeri ^</pattern>
+          <template>
+               Cu ce vrei sa ti antrenezi umerii?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiincepatoriumeri</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Brate ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiincepatoribrate</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Trapez ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiincepatoritrapez</set></think>
+          </template>
+      </category>
+      
+      
+      <topic name="greutatiincepatoripiept">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Pe ce plan de lucru vrei sa te antrenezi?
+				  <ul>
+                    <li>Inclinat</li>
+                    <li>Declinat</li>
+                    <li>Orizontal</li>
+                  </ul>
+                  <think><set name="topic">planganterepieptincepatori</set></think>
+              </template>
+          </category>
+          
+          <topic name="planganterepieptincepatori">
+              
+              <category>
+                  <pattern>^ Inclinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/06/Impins-din-inclinat-cu-gantere.jpg</image>
+                        Iti recomand urmatorul exercitiu pentru piept cu ganterele pe plan inclinat:
+                        Impins de la piept cu ganterele pe plan inclinat - 3 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/impins-la-piept-cu-gantere">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Declinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/06/exercitii-pentru-piept-impins-cu-gantere-pe-plan-declinat-start.jpg</image>
+                        Iti recomand urmatorul exercitiu pentru piept cu ganterele pe plan declinat:
+                        impins de la piept cu ganterele pe plan declinat - 3 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-piept/impins-cu-gantere-din-declinat/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Orizontal ^</pattern>
+                  <template>
+                
+                        <image>https://i.ytimg.com/vi/P--lycU8VnY/maxresdefault.jpg</image>
+                        Iti recomand urmatorul exercitiu pentru piept cu ganterele pe plan orizontal:
+                        fluturari la piept cu ganterele pe plan orizontal - 3 serii x 15 repetari.
+                        <a href="https://blog.vitaclub.ro/fluturari-cu-gantere-pe-plan-orizontal/">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiincepatoripiept">
+              
+              <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Pe ce plan de lucru vrei sa te antrenezi?
+				  <ul>
+                    <li>Inclinat</li>
+                    <li>Declinat</li>
+                    <li>Orizontal</li>
+                  </ul>
+                  <think><set name="topic">planganterepieptincepatori2</set></think>
+              </template>
+          </category>
+          
+          <topic name="planganterepieptincepatori2">
+              
+              <category>
+                  <pattern>^ Inclinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/01/Impins-cu-haltera-pe-plan-inclinat.jpeg</image>
+                        Antrenamentul pentru piept cu haltera pe plan inclinat este urmatorul:
+					    impins de la piept cu haltera pe plan inclinat - 3 serii x 10 repetari.
+                        <a href="https://www.machomen.ro/impins-la-piept-din-plan-inclinat">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Declinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/10/Impins-cu-haltera-pe-plan-declinat.jpg</image>
+                        Antrenamentul pentru piept cu haltera pe plan declinat este urmatorul:
+					    impins de la piept cu haltera pe plan declinat - 3 serii x 10 repetari.
+                        <a href="https://www.machomen.ro/impins-la-piept-din-plan-declinat">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Orizontal ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/impins-de-la-piept-cu-haltera-din-culcat.jpg</image>
+                        Antrenamentul pentru piept cu haltera pe plan orizontal este urmatorul,
+					    impins la piept cu haltera pe plan orizontal - 3 serii x 10 repetari.
+                        <a href="https://shopbuilder.ro/impins-cu-bara-in-plan-orizontal-a2452">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+            </topic>
+        </topic>
+        
+        <topic name="greutatiincepatoripiept">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Pe ce plan de lucru vrei sa te antrenezi?
+				  <ul>
+                    <li>Inclinat</li>
+                    <li>Declinat</li>
+                    <li>Orizontal</li>
+                  </ul>
+                  <think><set name="topic">planganterepieptincepatori3</set></think>
+              </template>
+          </category>
+          
+          <topic name="planganterepieptincepatori3">
+              
+              <category>
+                  <pattern>^ Inclinat ^</pattern>
+                  <template>
+                
+                        <image>https://i.ytimg.com/vi/GXzJHXvqRfk/maxresdefault.jpg</image>
+                        Antrenamentul pentru piept la aparat pe plan inclinat este urmatorul:
+					    impins de la piept la aparat pe plan inclinat - 3 serii x 12 repetari.
+                        <a href="https://blog.vitaclub.ro/impins-de-la-piept-la-aparat/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Declinat ^</pattern>
+                  <template>
+                        Iti recomand urmatorul exercitiu pentru piept cu ganterele pe plan declinat:
+                        impins de la piept la aparat pe plan declinat - 3 serii x 12 repetari.
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Orizontal ^</pattern>
+                  <template>
+                
+                        <image>http://blog.vitaclub.ro/wp-content/uploads/2011/11/fluturari-la-aparat-pentru-muschii-pieptului.jpg</image>
+                        Antrenamentul pentru piept la aparat pe plan orizontal este urmatorul:
+					    fluturari la aparat pe plan orizontal - 3 serii x 12 repetari
+                        <a href="https://shopbuilder.ro/fluturari-la-aparatul-pec-deck-a2467">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiincepatorispate">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Vrei sa lucrezi partea inferioara sau superioara a spatelui?
+				  <ul>
+                    <li>Superioara</li>
+                    <li>Inferioara</li>
+                  </ul>
+                  <think><set name="topic">partespateincepatori</set></think>
+              </template>
+          </category>
+          
+          <topic name="partespateincepatori">
+              
+              <category>
+                  <pattern>^ Superioara ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/one-arm-dumbbell-row.jpg</image>
+                        Antrenamentul pentru partea superioara a spatelui cu ganterele este urmatorul:
+					    ramat cu ganterele la banca - 3 serii x 10 repetari.
+                        <a href="https://shopbuilder.ro/cum-sa-nu-faci-ramat-cu-gantera-a4855">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Inferioara ^</pattern>
+                  <template>
+                
+                        <image>https://dmailshop.ro/assets/uploads/centura-sportiva-corectoare-i-reductoare-innovagoods-1.jpg</image>
+                        Antrenamentul pentru partea inferioara a spatelui cu ganterele este urmatorul:
+					    ridicari pentru lombar cu greutati - 3 serii x 10 repetari.
+                        <a href="https://blog.vitaclub.ro/extensii-pentru-spate-cu-greutati/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiincepatorispate">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Vrei sa lucrezi partea inferioara sau superioara a spatelui?
+				  <ul>
+                    <li>Superioara</li>
+                    <li>Inferioara</li>
+                  </ul>
+                  <think><set name="topic">partespateincepatori2</set></think>
+              </template>
+          </category>
+          
+          <topic name="partespateincepatori2">
+              
+              <category>
+                  <pattern>^ Superioara ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/Ramat-cu-haltera-din-pozitia-stand-aplecat.jpg</image>
+                        Antrenamentul pentru partea superioara a spatelui cu haltera este urmatorul,
+					    ramat cu haltera din picioare - 3 serii x 10 repetari.
+                        <a href="https://www.pronutrition.ro/blog/post/ramat-cu-haltera-din-aplecat-vs-ramat-traditional-cu-bara-t.html">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Inferioara ^</pattern>
+                  <template>
+                
+                        <image>https://staiinforma.ro/wp-content/uploads/2016/02/best-deadlift-alternatives-graphics-2.jpg</image>
+                        Antrenamentul pentru partea inferioara a spatelui cu haltera este urmatorul,
+					    ridicari pentru lombar cu haltera - 3 serii x 10 repetari
+                        <a href="https://www.thebarbellgarage.com/tehnici-de-antrenament/exercitii-de-baza-pentru-un-spate-mai-puternic-si-mai-sanatos/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+            <topic name="greutatiincepatorispate">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Vrei sa lucrezi partea inferioara sau superioara a spatelui?
+				  <ul>
+                    <li>Superioara</li>
+                    <li>Inferioara</li>
+                  </ul>
+                  <think><set name="topic">partespateincepatori3</set></think>
+              </template>
+          </category>
+          
+          <topic name="partespateincepatori3">
+              
+              <category>
+                  <pattern>^ Superioara ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2017/07/wide-grip-lat-pulldown.jpg</image>
+                        Antrenamentul pentru partea superioara a spatelui la aparat este urmatorul:
+					    tractiuni la helcometru la spate - 3 serii x 10 repetari.
+                        <a href="https://www.flexgym.ro/spatele-tractiuni-la-helcometru/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Inferioara ^</pattern>
+                  <template>
+                
+                        <image>https://fitclass.ro/fitness-bucuresti/wp-content/uploads/2018/10/lombari.jpg</image>
+                        Antrenamentul pentru partea inferioara a spatelui la aparat este urmatorul,
+					    hiperextensii - 3 serii x 10 repetari.
+                        <a href="https://fitclass.ro/fitness-bucuresti/antrenamentul-muschilor-lombari-hiperextensiile-la-aparat/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              
+              <topic name="greutatiincepatoripicioare">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Ce parte a piciorului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Cvadriceps</li>
+                    <li>Biceps femural</li>
+                    <li>Gambe</li>
+                    <li>Fesieri</li>
+                  </ul>
+                  <think><set name="topic">partepicioareincepatori</set></think>
+              </template>
+          </category>
+          
+          <topic name="partepicioareincepatori">
+              
+              <category>
+                  <pattern>^ cvadriceps ^</pattern>
+                  <template>
+                
+                        <image>https://danvasilache.ro/website/uploads/2018/06/fandari-cu-gantere.jpg</image>
+                        Antrenamentul pentru cvadriceps cu gantere este urmatorul:
+					    fandari cu gantere - 3 serii x 10 repetari
+                        <a href="https://www.topculturism.ro/fandari-cu-gantere/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+                <category>
+                  <pattern>^ biceps ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femural ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femur ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Biceps femural ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/12/Indreptari-cu-picioarele-drepte-cu-gantere.jpg</image>
+                        Antrenamentul pentru biceps-ul femural cu gantere este urmatorul:
+					    indreptari romanesti cu gantere - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-femural/indreptari-romanesti-cu-gantere/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Gambe ^</pattern>
+                  <template>
+                
+                        <image>https://www.steroizi.ro/public/upload/images/steroizi-ro_Wed06November2013100714.jpg</image>
+                        Antrenamentul pentru gambe cu gantere este urmatorul,
+					    ridicari pe varfuri cu gantere - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-gambe/ridicari-pe-varfuri-din-picioare-cu-gantere/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ fund ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ posterior ^</pattern>
+                  <template><srai>^ fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ fese ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Fesieri ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/08/indreptari-romanesti-cu-gantere.jpg</image>
+                        Antrenamentul pentru fesieri cu gantere este urmatorul,
+					    indreptari cu gantera pentru fesieri - 3 serii x 10 repetari.
+                        <a href="https://fitclass.ro/fitness-bucuresti/antrenamentul-pentru-fesieri-si-femurali/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiincepatoripicioare">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Ce parte a piciorului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Cvadriceps</li>
+                    <li>Biceps femural</li>
+                    <li>Gambe</li>
+                    <li>Fesieri</li>
+                  </ul>
+                  <think><set name="topic">partepicioareincepatori2</set></think>
+              </template>
+          </category>
+          
+          <topic name="partepicioareincepatori2">
+              
+              <category>
+                  <pattern>^ cvadriceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/07/fandari-cu-haltera-pozitie-de-final.jpg</image>
+                        Antrenamentul pentru cvadriceps cu haltera este urmatorul,
+					    fandari cu haltera - 3 serii x 10 repetari.
+                        <a href="https://www.machomen.ro/fandari-frontale-cu-haltera">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+                <category>
+                  <pattern>^ biceps ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femural ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femur ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Biceps femural ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/09/Indreptari-cu-haltera-bara.jpg</image>
+                        Antrenamentul pentru biceps-ul femural cu haltera este urmatorul:
+					    indreptari romanesti cu haltera - 3 serii x 10 repetari.
+                        <a href="https://www.machomen.ro/indreptari-romanesti-sau-indreptari-cu-bara-cu-picioarele-fixe">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Gambe ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/08/Exercitii-pentru-muschii-gambei-Ridicari-pe-varfuri-din-stand.jpg</image>
+                        Antrenamentul pentru gambe cu haltera este urmatorul,
+					    ridicari pe varfuri cu haltera - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-gambe/ridicari-pe-varfuri-cu-haltera-in-spate/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Fesieri ^</pattern>
+                  <template>
+                
+                        <image>https://femeiafit.ro/wp-content/uploads/2014/06/Muschii-din-genuflexiune.jpg</image>
+                        Antrenamentul pentru fesieri cu haltera este urmatorul,
+					    genuflexiuni cu picioarele departate cu haltera - 3 serii x 10 repetari.
+                        <a href="https://www.pronutrition.ro/blog/post/genuflexiune-cu-picioarele-departate-vs-genuflexiune-frontala.html">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+            <topic name="greutatiincepatoripicioare">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Ce parte a piciorului vrei sa izolezi mai bine?
+				<ul>
+                    <li>Cvadriceps</li>
+                    <li>Biceps femural</li>
+                    <li>Gambe</li>
+                    <li>Fesieri</li>
+                </ul>
+                  <think><set name="topic">partepicioareincepatori3</set></think>
+              </template>
+          </category>
+          
+          <topic name="partepicioareincepatori3">
+              
+              <category>
+                  <pattern>^ cvadriceps ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/seated-machine-leg-extension.jpg</image>
+                        Antrenamentul pentru cvadriceps la aparat este urmatorul,
+					    extensii shaper pentru izolarea cvadricepsului - 3 serii x 20 repetari.
+                        <a href="https://www.machomen.ro/extensii-picioare">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+                <category>
+                  <pattern>^ biceps ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femural ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femur ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Biceps femural ^</pattern>
+                  <template>
+                
+                        <image>https://www.bodyrock.ro/_pics/articles/large/flexii-intins-UTH8.jpg</image>
+                        Antrenamentul pentru biceps-ul femural la aparat este urmatorul,
+					    flexii shaper pentru bicepsul femural - 3 serii x 20 repetari.
+                        <a href="https://www.bodyrock.ro/care-exercitiu-este-mai-eficient-pentru-bicepsul-femural-flexiile-din-asezat-sau-flexii-din-intins.html">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Gambe ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/Ridicari-pe-varfuri-din-sezand-la-aparat.jpg</image>
+                        Antrenamentul pentru gambe la aparat este urmatorul,
+					    ridicari pe varfuri la aparat - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-gambe/ridicari-pe-varfuri-din-picioare-la-aparat/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+               <category>
+                  <pattern>^ fund ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ dorsal ^</pattern>
+                  <template><srai>^ fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ fese ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Fesieri ^</pattern>
+                  <template>
+                
+                        <image>https://www.sportist.ro/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/2/_/2_79_7.jpg</image>
+                        Antrenamentul pentru fesieri la aparat este urmatorul,
+					    aparat pentru fesieri - 3 serii x 10 repetari.
+                        <a href="https://gymbeam.ro/blog/cele-mai-bune-exercitii-pentru-posterior-si-picioare-recomandate-de-nicole-wilkins/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiincepatoriumeri">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Ce muschi ai umarului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Frontal</li>
+                    <li>Median</li>
+                    <li>Posterior</li>
+                  </ul>
+                  <think><set name="topic">muschigantereumeriincepatori</set></think>
+              </template>
+          </category>
+          
+          <topic name="muschigantereumeriincepatori">
+              
+              <category>
+                  <pattern>^ fata ^</pattern>
+                  <template><srai>^ Frontal ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Frontal ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/05/Exercitii-umeri-Ridicarea-ganterei-prin-inainte.jpg</image>
+                        Pentru umarul frontal cu gantere iti recomand urmatorul antrenament:
+					    ridicari frontale cu gantera - 3 serii x 10 repetari.
+                        <a href="https://www.machomen.ro/ridicari-frontale-cu-gantere">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ mijloc ^</pattern>
+                  <template><srai>^ Median ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Median ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2017/10/side-lateral-dumbbell-raises.jpg</image>
+                        Pentru umarul median iti recomand urmatorul antrenament:
+					    ridicari laterale cu gantera - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-deltoizi-umeri/ridicari-laterale-cu-gantere/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ spate ^</pattern>
+                  <template><srai>^ Posterior ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Posterior ^</pattern>
+                  <template>
+                
+                        <image>https://exercitiiculturism.files.wordpress.com/2012/02/fluturari-laterale-din-aplecat.jpg</image>
+                        Pentru umarul posterior iti recomand urmatorul antrenament:
+					    fluturari posterioare cu gantera - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-deltoizi-umeri/">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiincepatoriumeri">
+              
+              <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                 Ce muschi ai umarului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Frontal</li>
+                    <li>Median</li>
+                    <li>Posterior</li>
+                  </ul>
+                  <think><set name="topic">muschigantereumeriincepatori2</set></think>
+              </template>
+          </category>
+          
+          <topic name="muschigantereumeriincepatori2">
+               <category>
+                  <pattern>^ fata ^</pattern>
+                  <template><srai>^ Frontal ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Frontal ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/barbell-front-raise.jpg</image>
+                        Pentru umarul frontal cu haltera iti recomand urmatorul antrenament:
+					    ridicari frontale cu haltera - 3 serii x 10 repetari.
+                        <a href="https://www.machomen.ro/ridicari-frontale-cu-bara">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ mijloc ^</pattern>
+                  <template><srai>^ Median ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Median ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2017/10/standing-barbell-military-press.jpg</image>
+                        Pentru umarul median cu haltera iti recomand urmatorul antrenament:
+					    impins cu haltera pentru umeri - 3 serii x 10 repetari.
+                        <a href="https://shopbuilder.ro/impins-cu-bara-pentru-umeri-de-la-piept-a2567">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ spate ^</pattern>
+                  <template><srai>^ Posterior ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Posterior ^</pattern>
+                  <template>
+                
+                        <image>https://www.culturismul.ro/wp-content/uploads/2011/08/ggmcv-1.jpg</image>
+                        Pentru umarul posterior cu haltera iti recomand urmatorul antrenament:
+					    extensii prin trageri verticale cu bara - 3 serii x 10 repetari.
+                        <a href="https://www.culturismul.ro/extensii-prin-trageri-verticale-cu-bara/">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+            </topic>
+        </topic>
+        
+        <topic name="greutatiincepatoriumeri">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Ce muschi ai umarului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Frontal</li>
+                    <li>Median</li>
+                    <li>Posterior</li>
+                  </ul>
+                  <think><set name="topic">muschigantereumeriincepatori3</set></think>
+              </template>
+          </category>
+          
+          <topic name="muschigantereumeriincepatori3">
+              
+               <category>
+                  <pattern>^ fata ^</pattern>
+                  <template><srai>^ Frontal ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Frontal ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/05/Exercitii-umeri-Impins-deasupra-capului-la-aparat.jpg</image>
+                        Pentru umarul frontal la aparat iti recomand urmatorul exercitiu:
+					    impins la aparat pentru umeri - 3 serii x 10 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-deltoizi-umeri/impins-pentru-umeri-la-aparat/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ mijloc ^</pattern>
+                  <template><srai>^ Median ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Median ^</pattern>
+                  <template>
+                      <image>https://i.ytimg.com/vi/ZebSNRnjd2Q/maxresdefault.jpg</image>
+                        Pentru umarul median la aparat iti recomand urmatorul exercitiu:
+				    	ridicari laterale la scripete - 3 serii x 10 repetari.
+				    	<a href="https://shopbuilder.ro/ridicari-laterale-la-scripete-a2557">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ spate ^</pattern>
+                  <template><srai>^ Posterior ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Posterior ^</pattern>
+                  <template>
+                
+                        <image>http://www.cv-activ.ro/wp-content/uploads/2017/05/fluturari-inapoi-la-aparat-300x202.jpg</image>
+                        Pentru umarul posterior la aparat iti recomand urmatorul exercitiu:
+					    fluturari inapoi la aparat - 3 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/fluturari-inverse-la-pec-deck">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiincepatoribrate">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Vrei sa lucrezi biceps sau triceps?
+				  <ul>
+                    <li>Biceps</li>
+                    <li>Triceps</li>
+                  </ul>
+                  <think><set name="topic">partebrateincepatori</set></think>
+              </template>
+          </category>
+          
+          <topic name="partebrateincepatori">
+              
+              <category>
+                  <pattern>^ Biceps ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2018/01/c77b14c3894a63c3fb066dd8f4deec34-building-biceps-biceps-workout-300x275-300x275.jpg</image>
+                        Pentru a antrena bicepsul cu gantere iti recomand urmatorul exercitiu:
+					    flexii cu ganterele pentru biceps - 3 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-biceps/flexii-cu-gantere/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Triceps ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/seated-tricep-press-overhead-extension.jpg</image>
+                        Pentru a antrena tricepsul cu gantere iti recomand urmatorul exercitiu:
+					    flexii cu gantera deasupra capului - 3 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/extensii-cu-gantera-deasupra-capului">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiincepatoribrate">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Vrei sa lucrezi biceps sau triceps?
+				  <ul>
+                    <li>Biceps</li>
+                    <li>Triceps</li>
+                  </ul>
+                  <think><set name="topic">partebrateincepatori2</set></think>
+              </template>
+          </category>
+          
+          <topic name="partebrateincepatori2">
+              
+              <category>
+                  <pattern>^ Biceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/10/flexii-cu-haltera-din-picioare.jpg</image>
+                        Pentru a antrena bicepsul cu haltera iti recomand urmatorul exercitiu:
+					    flexii cu haltera pentru biceps - 3 serii x 12 repetari.
+                        <a href="https://staiinforma.ro/blog/exercitii/exercitii-biceps/flexii-cu-haltera/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Triceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/05/Exercitii-triceps-Extensii-cu-bara-EZ-din-culcat-orizontal.jpg</image>
+                        Pentru a antrena tricepsul cu haltera iti recomand urmatorul exercitiu:
+					    flexii cu haltera pentru triceps - 3 serii x 12 repetari.
+                        <a href="https://antrenorulmeupersonal.ro/articole/exercitii-biceps-triceps/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+            <topic name="greutatiincepatoribrate">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Vrei sa lucrezi biceps sau triceps?
+				  <ul>
+                    <li>Biceps</li>
+                    <li>Triceps</li>
+                  </ul>
+                  <think><set name="topic">partebrateincepatori3</set></think>
+              </template>
+          </category>
+          
+          <topic name="partebrateincepatori3">
+              
+              <category>
+                  <pattern>^ Biceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/12/Flexii-la-aparat-pt-bicepsi.jpg</image>
+                        Pentru a antrena bicepsul la aparat iti recomand urmatorul exercitiu:
+					    flexii cu bara Z la aparat pentru biceps - 3 serii x 12 repetari.
+                        <a href="https://blog.vitaclub.ro/flexii-la-aparat-pentru-bicepsi/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Triceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/extensii-la-helcometru-cu-bara-dreapta.jpg</image>
+                        Pentru a antrena tricepsul la aparat iti recomand urmatorul exercitiu:
+					    flexii cu sfoara la aparat pentru triceps - 3 serii x 12 repetari.
+                        <a href="https://vladdorobat.ro/exercitiul-meu-preferat-pentru-triceps-brate/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiincepatoritrapez">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  <image>https://www.machomen.ro/wp-content/uploads/images/ridicari-din-umeri-cu-gantere-inside.jpg</image>
+                  Pentru dezvoltarea trapezului cu gantera iti propun urmatorul exercitiu:
+			      ridicari de umeri cu gantere - 3 serii x 20 repetari.
+			        <a href="https://www.machomen.ro/ridicari-din-umeri-cu-gantere">
+                            
+                        Mai multe informatii aici
+                    </a>
+              </template>
+          </category>
+              </topic>
+              
+              <topic name="greutatiincepatoritrapez">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ Haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Haltera ^</pattern>
+              <template>
+                <image>http://victordiaconescu.com/wp-content/uploads/2017/07/barbell-shrug.jpg</image>
+                Pentru dezvoltarea trapezului cu haltera iti propun urmatorul exercitiu:
+				ridicari de umeri cu haltera - 3 serii x 20 repetari.
+				<a href="https://www.steroizi.ro/exercitii-pentru-trapez/ridicari-din-umeri-cu-haltera/">
+                            
+                Mai multe informatii aici
+                </a>
+              </template>
+          </category>
+              </topic>
+              
+              <topic name="greutatiincepatoritrapez">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  <image>https://i.ytimg.com/vi/Yj7iLT-uWRg/maxresdefault.jpg</image>
+                  Pentru dezvoltarea trapezului cu ajutorul aparatelor iti propun urmatorul exercitiu:
+				  ridicari de umeri cu bara la scripete - 3 serii x 20 repetari.
+				    <a href="https://www.steroizi.ro/exercitii-pentru-trapez/">
+                            
+                    Mai multe informatii aici
+                    </a>
+              </template>
+          </category>
+              </topic>
+              
+              
+              </topic>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <topic name="Avansati">
+     
+      <category>
+          <pattern>^ Piept ^</pattern>
+          <template>
+              Cu ce vrei sa te antrenezi?
+              <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiavansatipiept</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Spate ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiavansatispate</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Picioare ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiavansatipicioare</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Umeri ^</pattern>
+          <template>
+               Cu ce vrei sa ti antrenezi umerii?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiavansatiumeri</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Brate ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiavansatibrate</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>^ Trapez ^</pattern>
+          <template>
+               Cu ce vrei sa te antrenezi?
+	          <ul>
+                  <li>Gantere</li>
+                  <li>Haltera</li>
+                  <li>Aparate</li>
+              </ul>
+              <think><set name="topic">greutatiavansatitrapez</set></think>
+          </template>
+      </category>
+      
+      
+      <topic name="greutatiavansatipiept">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Pe ce plan de lucru vrei sa te antrenezi?
+				  <ul>
+                    <li>Inclinat</li>
+                    <li>Declinat</li>
+                    <li>Orizontal</li>
+                  </ul>
+                  <think><set name="topic">planganterepieptavansati</set></think>
+              </template>
+          </category>
+          
+          <topic name="planganterepieptavansati">
+              
+              <category>
+                  <pattern>^ Inclinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/06/Impins-din-inclinat-cu-gantere.jpg</image>
+                        Antrenamentul pentru piept cu ganterele pe plan inclinat este urmatorul:
+					    impins de la piept cu ganterele pe plan inclinat - 4 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/impins-la-piept-cu-gantere">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Declinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/06/exercitii-pentru-piept-impins-cu-gantere-pe-plan-declinat-start.jpg</image>
+                        Antrenamentul pentru piept cu ganterele pe plan declinat este urmatorul:
+					    impins de la piept cu ganterele pe plan declinat - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-piept/impins-cu-gantere-din-declinat/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Orizontal ^</pattern>
+                  <template>
+                
+                        <image>https://i.ytimg.com/vi/P--lycU8VnY/maxresdefault.jpg</image>
+                        Antrenamentul pentru piept cu ganterele pe plan orizontal este urmatorul:
+					    fluturari la piept cu ganterele pe plan orizontal - 4 serii x 15 repetari.
+                        <a href="https://blog.vitaclub.ro/fluturari-cu-gantere-pe-plan-orizontal/">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiavansatipiept">
+              
+              <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Pe ce plan de lucru vrei sa te antrenezi?
+				  <ul>
+                    <li>Inclinat</li>
+                    <li>Declinat</li>
+                    <li>Orizontal</li>
+                  </ul>
+                  <think><set name="topic">planganterepieptavansati2</set></think>
+              </template>
+          </category>
+          
+          <topic name="planganterepieptavansati2">
+              
+              <category>
+                  <pattern>^ Inclinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/01/Impins-cu-haltera-pe-plan-inclinat.jpeg</image>
+                        Antrenamentul pentru piept cu haltera pe plan inclinat este urmatorul:
+					    impins de la piept cu haltera pe plan inclinat - 4 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/impins-la-piept-din-plan-inclinat">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Declinat ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/10/Impins-cu-haltera-pe-plan-declinat.jpg</image>
+                        Antrenamentul pentru piept cu haltera pe plan declinat este urmatorul:
+					    impins de la piept cu haltera pe plan declinat - 4 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/impins-la-piept-din-plan-declinat">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Orizontal ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/impins-de-la-piept-cu-haltera-din-culcat.jpg</image>
+                        Antrenamentul pentru piept cu haltera pe plan orizontal este urmatorul:
+					    impins la piept cu haltera pe plan orizontal - 4 serii x 12 repetari.
+                        <a href="https://shopbuilder.ro/impins-cu-bara-in-plan-orizontal-a2452">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+            </topic>
+        </topic>
+        
+        <topic name="greutatiavansatipiept">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Pe ce plan de lucru vrei sa te antrenezi?
+				  <ul>
+                    <li>Inclinat</li>
+                    <li>Declinat</li>
+                    <li>Orizontal</li>
+                  </ul>
+                  <think><set name="topic">planganterepieptavansati3</set></think>
+              </template>
+          </category>
+          
+          <topic name="planganterepieptavansati3">
+              
+              <category>
+                  <pattern>^ Inclinat ^</pattern>
+                  <template>
+                
+                        <image>https://i.ytimg.com/vi/GXzJHXvqRfk/maxresdefault.jpg</image>
+                        Antrenamentul pentru piept la aparat pe plan inclinat este urmatorul:
+					    impins de la piept la aparat pe plan inclinat - 4 serii x 12 repetari.
+                        <a href="https://blog.vitaclub.ro/impins-de-la-piept-la-aparat/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Declinat ^</pattern>
+                  <template>
+                        Antrenamentul pentru piept la aparat pe plan declinat este urmatorul:
+					    impins de la piept la aparat pe plan declinat - 4 serii x 12 repetari.
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Orizontal ^</pattern>
+                  <template>
+                
+                        <image>http://blog.vitaclub.ro/wp-content/uploads/2011/11/fluturari-la-aparat-pentru-muschii-pieptului.jpg</image>
+                        Antrenamentul pentru piept la aparat pe plan orizontal este urmatorul:
+					    fluturari la aparat pe plan orizontal - 4 serii x 12 repetari.
+                        <a href="https://shopbuilder.ro/fluturari-la-aparatul-pec-deck-a2467">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiavansatispate">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Vrei sa lucrezi partea inferioara sau superioara a spatelui?
+				  <ul>
+                    <li>Superioara</li>
+                    <li>Inferioara</li>
+                  </ul>
+                  <think><set name="topic">partespateavansati</set></think>
+              </template>
+          </category>
+          
+          <topic name="partespateavansati">
+              
+              <category>
+                  <pattern>^ Superioara ^</pattern>
+                  <template>
+                
+                        <image>https://www.fit4pro.ro/wp-content/uploads/2020/07/Adaug%C4%83-greutate2.png</image>
+                        Antrenamentul pentru partea superioara a spatelui cu ganterele este urmatorul:
+					    tractiuni la bara cu greutate - 4 serii x 12 repetari.
+                        <a href="https://www.topculturism.ro/tractiuni-la-bara-2/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Inferioara ^</pattern>
+                  <template>
+                
+                        <image>https://dmailshop.ro/assets/uploads/centura-sportiva-corectoare-i-reductoare-innovagoods-1.jpg</image>
+                        Antrenamentul pentru partea inferioara a spatelui cu ganterele este urmatorul:
+					    ridicari pentru lombar cu greutati - 4 serii x 20 repetari.
+                        <a href="https://blog.vitaclub.ro/extensii-pentru-spate-cu-greutati/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiavansatispate">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Vrei sa lucrezi partea inferioara sau superioara a spatelui?
+				  <ul>
+                    <li>Superioara</li>
+                    <li>Inferioara</li>
+                  </ul>
+                  <think><set name="topic">partespateavansati2</set></think>
+              </template>
+          </category>
+          
+          <topic name="partespateavansati2">
+              
+              <category>
+                  <pattern>^ Superioara ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/Ramat-cu-haltera-din-pozitia-stand-aplecat.jpg</image>
+                        Antrenamentul pentru partea superioara a spatelui cu haltera este urmatorul,
+					    ramat cu haltera din picioare - 4 serii x 12 repetari.
+                        <a href="https://www.pronutrition.ro/blog/post/ramat-cu-haltera-din-aplecat-vs-ramat-traditional-cu-bara-t.html">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Inferioara ^</pattern>
+                  <template>
+                
+                        <image>https://staiinforma.ro/wp-content/uploads/2016/02/best-deadlift-alternatives-graphics-2.jpg</image>
+                        Antrenamentul pentru partea inferioara a spatelui cu haltera este urmatorul,
+					    ridicari pentru lombar cu haltera - 4 serii x 12 repetari
+                        <a href="https://www.thebarbellgarage.com/tehnici-de-antrenament/exercitii-de-baza-pentru-un-spate-mai-puternic-si-mai-sanatos/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+            <topic name="greutatiavansatispate">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Vrei sa lucrezi partea inferioara sau superioara a spatelui?
+				  <ul>
+                    <li>Superioara</li>
+                    <li>Inferioara</li>
+                  </ul>
+                  <think><set name="topic">partespateavansati3</set></think>
+              </template>
+          </category>
+          
+          <topic name="partespateavansati3">
+              
+              <category>
+                  <pattern>^ Superioara ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2017/07/wide-grip-lat-pulldown.jpg</image>
+                        Antrenamentul pentru partea superioara a spatelui la aparat este urmatorul:
+					    tractiuni la helcometru la ceafa - 4 serii x 12 repetari.
+                        <a href="https://www.flexgym.ro/spatele-tractiuni-la-helcometru/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Inferioara ^</pattern>
+                  <template>
+                
+                        <image>https://www.steroizi.ro/public/upload/images/steroizi-ro_2Fri13December2013134845.jpg</image>
+                        Antrenamentul pentru partea inferioara a spatelui la aparat este urmatorul:
+					    indreptari - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-femural/indreptari-romanesti-la-aparatul-smith/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              
+              <topic name="greutatiavansatipicioare">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Ce parte a piciorului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Cvadriceps</li>
+                    <li>Biceps femural</li>
+                    <li>Gambe</li>
+                    <li>Fesieri</li>
+                  </ul>
+                  <think><set name="topic">partepicioareavansati</set></think>
+              </template>
+          </category>
+          
+          <topic name="partepicioareavansati">
+              
+              <category>
+                  <pattern>^ cvadriceps ^</pattern>
+                  <template>
+                
+                        <image>https://danvasilache.ro/website/uploads/2018/06/fandari-cu-gantere.jpg</image>
+                        Antrenamentul pentru cvadriceps cu gantere este urmatorul:
+					    fandari cu gantere - 5 serii x 10 repetari
+                        <a href="https://www.topculturism.ro/fandari-cu-gantere/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+                <category>
+                  <pattern>^ biceps ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femural ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femur ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Biceps femural ^</pattern>
+                  <template>
+                
+                        <image>https://elrumbo.info/wp-content/uploads/2020/04/3097712.jpg</image>
+                        Antrenamentul pentru biceps-ul femural cu gantere este urmatorul:
+					    deadlifts cu gantere - 4 serii x 12 repetari
+                        <a href="https://ro.elrumbo.info/2020/04/21/tiaga-na-priamykh-nogakh-s-ganteliami-tekhnika-vypolneniia-i-osobennosti-uprazhneniia/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Gambe ^</pattern>
+                  <template>
+                
+                        <image>https://www.steroizi.ro/public/upload/images/steroizi-ro_Wed06November2013100714.jpg</image>
+                        Antrenamentul pentru gambe cu gantere este urmatorul,
+					    ridicari pe varfuri cu gantere - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-gambe/ridicari-pe-varfuri-din-picioare-cu-gantere/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ fund ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ posterior ^</pattern>
+                  <template><srai>^ fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ fese ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Fesieri ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/08/indreptari-romanesti-cu-gantere.jpg</image>
+                        Antrenamentul pentru fesieri cu gantere este urmatorul,
+					    indreptari cu gantera pentru fesieri - 4 serii x 12 repetari.
+                        <a href="https://fitclass.ro/fitness-bucuresti/antrenamentul-pentru-fesieri-si-femurali/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiavansatipicioare">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Ce parte a piciorului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Cvadriceps</li>
+                    <li>Biceps femural</li>
+                    <li>Gambe</li>
+                    <li>Fesieri</li>
+                  </ul>
+                  <think><set name="topic">partepicioareavansati2</set></think>
+              </template>
+          </category>
+          
+          <topic name="partepicioareavansati2">
+              
+              <category>
+                  <pattern>^ cvadriceps ^</pattern>
+                  <template>
+                
+                        <image>https://femeiafit.ro/wp-content/uploads/2014/06/Muschii-din-genuflexiune.jpg</image>
+                        Antrenamentul pentru cvadriceps cu haltera este urmatorul:
+					    genuflexiuni cu haltera - 4 serii x 12 repetari.
+                        <a href="https://blog.vitaclub.ro/genuflexiuni-cu-haltera/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+                <category>
+                  <pattern>^ biceps ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femural ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femur ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Biceps femural ^</pattern>
+                  <template>
+                
+                        <image>https://victordiaconescu.com/wp-content/uploads/2018/04/romaniandeadlift1.jpg</image>
+                        Antrenamentul pentru biceps-ul femural cu haltera este urmatorul:
+					    deadlift cu haltera - 4 serii x 12 repetari.
+                        <a href="https://staiinforma.ro/blog/exercitii/exercitii-spate/indreptari-cu-haltera-deadlift/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Gambe ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/08/Exercitii-pentru-muschii-gambei-Ridicari-pe-varfuri-din-stand.jpg</image>
+                        Antrenamentul pentru gambe cu haltera este urmatorul,
+					    ridicari pe varfuri cu haltera - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-gambe/ridicari-pe-varfuri-cu-haltera-in-spate/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ fund ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ posterior ^</pattern>
+                  <template><srai>^ fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ fese ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Fesieri ^</pattern>
+                  <template>
+                
+                        <image>https://femeiafit.ro/wp-content/uploads/2014/06/Muschii-din-genuflexiune.jpg</image>
+                        Antrenamentul pentru fesieri cu haltera este urmatorul,
+					    genuflexiuni cu picioarele departate cu haltera - 3 serii x 10 repetari.
+                        <a href="https://www.pronutrition.ro/blog/post/genuflexiune-cu-picioarele-departate-vs-genuflexiune-frontala.html">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+            <topic name="greutatiavansatipicioare">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Ce parte a piciorului vrei sa izolezi mai bine?
+				<ul>
+                    <li>Cvadriceps</li>
+                    <li>Biceps femural</li>
+                    <li>Gambe</li>
+                    <li>Fesieri</li>
+                </ul>
+                  <think><set name="topic">partepicioareavansati3</set></think>
+              </template>
+          </category>
+          
+          <topic name="partepicioareavansati3">
+              
+              <category>
+                  <pattern>^ cvadriceps ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/seated-machine-leg-extension.jpg</image>
+                        Antrenamentul pentru cvadriceps la aparat este urmatorul,
+					    extensii shaper pentru izolarea cvadricepsului - 4 serii x 20 repetari.
+                        <a href="https://www.machomen.ro/extensii-picioare">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+                <category>
+                  <pattern>^ biceps ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femural ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              <category>
+                  <pattern>^ femur ^</pattern>
+                  <template><srai>^ Biceps femural ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Biceps femural ^</pattern>
+                  <template>
+                
+                        <image>https://www.bodyrock.ro/_pics/articles/large/flexii-intins-UTH8.jpg</image>
+                        Antrenamentul pentru biceps-ul femural la aparat este urmatorul,
+					    flexii shaper pentru bicepsul femural - 4 serii x 20 repetari.
+                        <a href="https://www.bodyrock.ro/care-exercitiu-este-mai-eficient-pentru-bicepsul-femural-flexiile-din-asezat-sau-flexii-din-intins.html">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Gambe ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/11/Ridicari-pe-varfuri-din-sezand-la-aparat.jpg</image>
+                        Antrenamentul pentru gambe la aparat este urmatorul,
+					    ridicari pe varfuri la aparat - 4 serii x 20 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-gambe/ridicari-pe-varfuri-din-picioare-la-aparat/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+               <category>
+                  <pattern>^ fund ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ posterior ^</pattern>
+                  <template><srai>^ fesieri ^</srai></template>
+              </category>
+              
+               <category>
+                  <pattern>^ fese ^</pattern>
+                  <template><srai>^ Fesieri ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Fesieri ^</pattern>
+                  <template>
+                
+                        <image>https://www.sportist.ro/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/2/_/2_79_7.jpg</image>
+                        Antrenamentul pentru fesieri la aparat este urmatorul,
+					    aparat pentru fesieri - 4 serii x 12 repetari.
+                        <a href="https://gymbeam.ro/blog/cele-mai-bune-exercitii-pentru-posterior-si-picioare-recomandate-de-nicole-wilkins/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiavansatiumeri">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Ce muschi ai umarului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Frontal</li>
+                    <li>Median</li>
+                    <li>Posterior</li>
+                  </ul>
+                  <think><set name="topic">muschigantereumeriavansati</set></think>
+              </template>
+          </category>
+          
+          <topic name="muschigantereumeriavansati">
+              
+              <category>
+                  <pattern>^ fata ^</pattern>
+                  <template><srai>^ Frontal ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Frontal ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/standing-overhead-dumbbell-press.jpg</image>
+                        Pentru umarul frontal iti recomand urmatorul antrenament:
+					    impins cu gantera pentru umeri - 4 serii x 12 repetari.
+                        <a href="https://blog.vitaclub.ro/impins-cu-gantere-din-sezand/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ mijloc ^</pattern>
+                  <template><srai>^ Median ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Median ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2017/10/side-lateral-dumbbell-raises.jpg</image>
+                        Pentru umarul median iti recomand urmatorul antrenament:
+					    ridicari laterale cu gantera - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-deltoizi-umeri/ridicari-laterale-cu-gantere/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ spate ^</pattern>
+                  <template><srai>^ Posterior ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Posterior ^</pattern>
+                  <template>
+                
+                        <image>https://exercitiiculturism.files.wordpress.com/2012/02/fluturari-laterale-din-aplecat.jpg</image>
+                        Pentru umarul posterior iti recomand urmatorul antrenament:
+					    fluturari laterale din aplecat - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-deltoizi-umeri/">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiavansatiumeri">
+              
+              <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                 Ce muschi ai umarului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Frontal</li>
+                    <li>Median</li>
+                    <li>Posterior</li>
+                  </ul>
+                  <think><set name="topic">muschigantereumeriavansati2</set></think>
+              </template>
+          </category>
+          
+          <topic name="muschigantereumeriavansati2">
+               <category>
+                  <pattern>^ fata ^</pattern>
+                  <template><srai>^ Frontal ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Frontal ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/barbell-front-raise.jpg</image>
+                        Pentru umarul frontal cu haltera iti recomand urmatorul antrenament:
+					    ridicari frontale cu haltera - 4 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/ridicari-frontale-cu-bara">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ mijloc ^</pattern>
+                  <template><srai>^ Median ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Median ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2017/10/standing-barbell-military-press.jpg</image>
+                        Pentru umarul median cu haltera iti recomand urmatorul antrenament:
+					    impins cu haltera pentru umeri - 4 serii x 12 repetari.
+                        <a href="https://shopbuilder.ro/impins-cu-bara-pentru-umeri-de-la-piept-a2567">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ spate ^</pattern>
+                  <template><srai>^ Posterior ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Posterior ^</pattern>
+                  <template>
+                
+                        <image>https://exercitiiculturism.files.wordpress.com/2012/02/inpins-de-la-ceafa-cu-bara.jpg</image>
+                        Pentru umarul posterior cu haltera iti recomand urmatorul antrenament:
+					    impins de la ceafa cu haltera - 4 serii x 12 repetari.
+                        <a href="https://shopbuilder.ro/impins-de-la-ceafa-cu-haltera-a2549">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+            </topic>
+        </topic>
+        
+        <topic name="greutatiavansatiumeri">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Ce muschi ai umarului vrei sa izolezi mai bine?
+				  <ul>
+                    <li>Frontal</li>
+                    <li>Median</li>
+                    <li>Posterior</li>
+                  </ul>
+                  <think><set name="topic">muschigantereumeriavansati3</set></think>
+              </template>
+          </category>
+          
+          <topic name="muschigantereumeriavansati3">
+              
+               <category>
+                  <pattern>^ fata ^</pattern>
+                  <template><srai>^ Frontal ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Frontal ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/05/Exercitii-umeri-Impins-deasupra-capului-la-aparat.jpg</image>
+                        Pentru umarul frontal la aparat iti recomand urmatorul exercitiu:
+					    impins la aparat pentru umeri - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-deltoizi-umeri/impins-pentru-umeri-la-aparat/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ mijloc ^</pattern>
+                  <template><srai>^ Median ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Median ^</pattern>
+                  <template>
+                      <image>https://i.ytimg.com/vi/ZebSNRnjd2Q/maxresdefault.jpg</image>
+                        Pentru umarul median la aparat iti recomand urmatorul exercitiu:
+				    	ridicari laterale la scripete - 4 serii x 12 repetari.
+				    	<a href="https://shopbuilder.ro/ridicari-laterale-la-scripete-a2557">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ spate ^</pattern>
+                  <template><srai>^ Posterior ^</srai></template>
+              </category>
+              
+              <category>
+                  <pattern>^ Posterior ^</pattern>
+                  <template>
+                
+                        <image>http://www.cv-activ.ro/wp-content/uploads/2017/05/fluturari-inapoi-la-aparat-300x202.jpg</image>
+                        Pentru umarul posterior la aparat iti recomand urmatorul exercitiu:
+					    fluturari inapoi la aparat - 4 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/fluturari-inverse-la-pec-deck">
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiavansatibrate">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  Vrei sa lucrezi biceps sau triceps?
+				  <ul>
+                    <li>Biceps</li>
+                    <li>Triceps</li>
+                  </ul>
+                  <think><set name="topic">partebrateavansati</set></think>
+              </template>
+          </category>
+          
+          <topic name="partebrateavansati">
+              
+              <category>
+                  <pattern>^ Biceps ^</pattern>
+                  <template>
+                
+                        <image>http://victordiaconescu.com/wp-content/uploads/2018/01/c77b14c3894a63c3fb066dd8f4deec34-building-biceps-biceps-workout-300x275-300x275.jpg</image>
+                        Pentru a antrena bicepsul cu gantere iti recomand urmatorul exercitiu:
+					    flexii cu ganterele pentru biceps - 4 serii x 12 repetari.
+                        <a href="https://www.steroizi.ro/exercitii-pentru-biceps/flexii-cu-gantere/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Triceps ^</pattern>
+                  <template>
+                
+                        <image>https://www.machomen.ro/wp-content/uploads/images/seated-tricep-press-overhead-extension.jpg</image>
+                        Pentru a antrena tricepsul cu gantere iti recomand urmatorul exercitiu:
+					    flexii cu gantera deasupra capului - 4 serii x 12 repetari.
+                        <a href="https://www.machomen.ro/extensii-cu-gantera-deasupra-capului">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              <topic name="greutatiavansatibrate">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ haltera ^</pattern>
+              <template>
+                  Vrei sa lucrezi biceps sau triceps?
+				  <ul>
+                    <li>Biceps</li>
+                    <li>Triceps</li>
+                  </ul>
+                  <think><set name="topic">partebrateavansati2</set></think>
+              </template>
+          </category>
+          
+          <topic name="partebrateavansati2">
+              
+              <category>
+                  <pattern>^ Biceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/10/flexii-cu-haltera-din-picioare.jpg</image>
+                        Pentru a antrena bicepsul cu haltera iti recomand urmatorul exercitiu:
+					    flexii cu haltera pentru biceps - 4 serii x 12 repetari.
+                        <a href="https://staiinforma.ro/blog/exercitii/exercitii-biceps/flexii-cu-haltera/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Triceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2012/05/Exercitii-triceps-Extensii-cu-bara-EZ-din-culcat-orizontal.jpg</image>
+                        Pentru a antrena tricepsul cu haltera iti recomand urmatorul exercitiu:
+					    flexii cu haltera pentru triceps - 4 serii x 12 repetari.
+                        <a href="https://antrenorulmeupersonal.ro/articole/exercitii-biceps-triceps/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+            <topic name="greutatiavansatibrate">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  Vrei sa lucrezi biceps sau triceps?
+				  <ul>
+                    <li>Biceps</li>
+                    <li>Triceps</li>
+                  </ul>
+                  <think><set name="topic">partebrateavansati3</set></think>
+              </template>
+          </category>
+          
+          <topic name="partebrateavansati3">
+              
+              <category>
+                  <pattern>^ Biceps ^</pattern>
+                  <template>
+                
+                        <image>https://blog.vitaclub.ro/wp-content/uploads/2011/12/Flexii-la-aparat-pt-bicepsi.jpg</image>
+                        Pentru a antrena bicepsul la aparat iti recomand urmatorul exercitiu:
+					    flexii cu bara Z la aparat pentru biceps - 4 serii x 12 repetari.
+                        <a href="https://blog.vitaclub.ro/flexii-la-aparat-pentru-bicepsi/">
+                           
+                            Mai multe informatii aici
+                      </a>
+                  </template>
+              </category>
+              
+              <category>
+                  <pattern>^ Triceps ^</pattern>
+                  <template>
+                
+                        <image>https://i.ytimg.com/vi/r34wvzFKwlY/hqdefault.jpg</image>
+                        Pentru a antrena tricepsul la aparat iti recomand urmatorul exercitiu:
+					    flotari la paralele la aparat - 4 serii x 12 repetari.   
+                        <a href="https://www.steroizi.ro/exercitii-pentru-triceps/flotari-la-paralele-din-sezut-la-aparat/">
+                            
+                            Mai multe informatii aici
+                        </a>
+                  </template>
+              </category>
+              </topic>
+              </topic>
+              
+              
+              <topic name="greutatiavansatitrapez">
+          
+            <category>
+                  <pattern>^ gantera ^</pattern>
+                  <template><srai>^ gantere ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ gantere ^</pattern>
+              <template>
+                  <image>https://www.machomen.ro/wp-content/uploads/images/ridicari-din-umeri-cu-gantere-inside.jpg</image>
+                  Pentru dezvoltarea trapezului cu gantera iti propun urmatorul exercitiu:
+			      ridicari de umeri cu gantere - 4 serii x 20 repetari.
+			        <a href="https://www.machomen.ro/ridicari-din-umeri-cu-gantere">
+                            
+                        Mai multe informatii aici
+                    </a>
+              </template>
+          </category>
+              </topic>
+              
+              <topic name="greutatiavansatitrapez">
+          
+            <category>
+                  <pattern>^ haltere ^</pattern>
+                  <template><srai>^ Haltera ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Haltera ^</pattern>
+              <template>
+                <image>http://victordiaconescu.com/wp-content/uploads/2017/07/barbell-shrug.jpg</image>
+                Pentru dezvoltarea trapezului cu haltera iti propun urmatorul exercitiu:
+				ridicari de umeri cu haltera - 4 serii x 20 repetari.
+				<a href="https://www.steroizi.ro/exercitii-pentru-trapez/ridicari-din-umeri-cu-haltera/">
+                            
+                Mai multe informatii aici
+                </a>
+              </template>
+          </category>
+              </topic>
+              
+              <topic name="greutatiavansatitrapez">
+          
+            <category>
+                  <pattern>^ aparat ^</pattern>
+                  <template><srai>^ Aparate ^</srai></template>
+              </category>
+
+          <category>
+              <pattern>^ Aparate ^</pattern>
+              <template>
+                  <image>https://i.ytimg.com/vi/Yj7iLT-uWRg/maxresdefault.jpg</image>
+                  Pentru dezvoltarea trapezului cu ajutorul aparatelor iti propun urmatorul exercitiu:
+				  ridicari de umeri cu bara la scripete - 4 serii x 20 repetari.
+				    <a href="https://www.steroizi.ro/exercitii-pentru-trapez/">
+                            
+                    Mai multe informatii aici
+                    </a>
+                    
+              </template>
+          </category>
+              </topic>
+              
+              
+              </topic>
+              
+              
+              
+              
+              
+              
+              
+    
+
+  
+  
+  
+  
+  
+  
+</aiml>
